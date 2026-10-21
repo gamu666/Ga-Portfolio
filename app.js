@@ -40,6 +40,8 @@ const allReels = reelGroups.flatMap((group,groupIndex)=>group.ids.map((id,index)
   group:groupIndex,
 })));
 allReels.push(...['01','02'].map(number=>({src:`assets/videos/remax-${number}.mp4`,poster:`assets/reel-thumbnails/remax-${number}.jpg`,original:`https://gamu666.github.io/reel-content-service/assets/videos/reel-${number}.mp4`,title:`RE/MAX · ${number==='01'?'King Tower':'Sydney Tower'}`,category:'Мэдээлэл, танилцуулга',group:2,directVideo:true})));
+allReels[allReels.length-1].original='https://www.facebook.com/reel/1994296164445177/';
+allReels[allReels.length-1].directVideo=false;
 let reels = allReels.filter(reel=>reel.group===0);
 
 const player = document.querySelector('#reel-player');
