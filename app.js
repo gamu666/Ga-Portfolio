@@ -27,9 +27,9 @@ posterStage.addEventListener('keydown', (event) => {
 });
 
 const reelGroups = [
+  {name:'Мэдээлэл, танилцуулга',ids:['1238366678503088','1356997826584773','1975730753331702','2109531003310060']},
   {name:'Хөтлөгчтэй Reels',ids:['1521086066319437','2040608576768614','1374488004301337','1408656537627493']},
   {name:'Баримт, тайлбар',ids:['2161274491035624','1726248254761906','1102640107956219']},
-  {name:'Мэдээлэл, танилцуулга',ids:['1238366678503088','1356997826584773','1975730753331702','2109531003310060']},
 ];
 const allReels = reelGroups.flatMap((group,groupIndex)=>group.ids.map((id,index)=>({
   src:`assets/videos/${id}.mp4`,
@@ -39,10 +39,9 @@ const allReels = reelGroups.flatMap((group,groupIndex)=>group.ids.map((id,index)
   category:group.name,
   group:groupIndex,
 })));
-const remaxReels = ['01','02'].map(number=>({src:`assets/videos/remax-${number}.mp4`,poster:`assets/reel-thumbnails/remax-${number}.jpg`,original:`https://www.facebook.com/reel/${number==='01'?'1113862011192577':'1994296164445177'}/`,title:`RE/MAX · ${number==='01'?'King Tower':'Sydney Tower'}`,category:'Мэдээлэл, танилцуулга',group:2,directVideo:false}));
+const remaxReels = ['01','02'].map(number=>({src:`assets/videos/remax-${number}.mp4`,poster:`assets/reel-thumbnails/remax-${number}.jpg`,original:`https://www.facebook.com/reel/${number==='01'?'1113862011192577':'1994296164445177'}/`,title:`RE/MAX · ${number==='01'?'King Tower':'Sydney Tower'}`,category:reelGroups[0].name,group:0,directVideo:false}));
 // Move the complete reel record, keeping its video, thumbnail and original post together.
-allReels.splice(allReels.findIndex(reel=>reel.group===2),0,remaxReels[0]);
-allReels.push(remaxReels[1]);
+allReels.unshift(...remaxReels);
 let reels = allReels.filter(reel=>reel.group===0);
 
 const player = document.querySelector('#reel-player');
