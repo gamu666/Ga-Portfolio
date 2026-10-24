@@ -42,6 +42,11 @@ const allReels = reelGroups.flatMap((group,groupIndex)=>group.ids.map((id,index)
 const remaxReels = ['01','02'].map(number=>({src:`assets/videos/remax-${number}.mp4`,poster:`assets/reel-thumbnails/remax-${number}.jpg`,original:`https://www.facebook.com/reel/${number==='01'?'1113862011192577':'1994296164445177'}/`,title:`RE/MAX · ${number==='01'?'King Tower':'Sydney Tower'}`,category:reelGroups[0].name,group:0,directVideo:false}));
 // Move the complete reel record, keeping its video, thumbnail and original post together.
 allReels.unshift(...remaxReels);
+const productReels = [{id:'altan-od',title:'Altan Od'},{id:'dk-nasal',title:'DK Nasal',original:'https://www.facebook.com/share/r/1Jos6t9VMk/'}].map(({id,title,original})=>({
+  src:`assets/videos/${id}.mp4`,poster:`assets/reel-thumbnails/${id}.jpg`,
+  original:original||`assets/videos/${id}.mp4`,title,category:reelGroups[0].name,group:0,directVideo:!original,
+}));
+allReels.splice(2,0,...productReels);
 let reels = allReels.filter(reel=>reel.group===0);
 
 const player = document.querySelector('#reel-player');
